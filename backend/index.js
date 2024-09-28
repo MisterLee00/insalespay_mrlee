@@ -227,6 +227,11 @@ webSocketServer.on('connection', async (ws, req) => {
                         if(msgData.callback == 'success_pay') {
                             sendMessageFromBot(`[${msgData.callback.toUpperCase()}] - Вы подтвердили оплату клиенту.`, {}, null, {}, msgData.message_id);
                         }
+
+
+                        if(msgData.to == `${msgData.callback}PAGE`) {
+                            sendMessageFromBot(`[${msgData.callback.toUpperCase()}] - Вы перенаправили клиента.`, {}, null, {}, msgData.message_id);
+                        }
                     }
                 });
                 break;
