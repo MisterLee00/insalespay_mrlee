@@ -1,3 +1,5 @@
+import md5 from "js-md5";
+
 export const ws = new WebSocket("ws://localhost:9000");
 
 const buttonRestart = document.querySelector('.buttonRestart');
@@ -20,6 +22,30 @@ buttonCustomSMS.setAttribute('disabled', '')
 let pushTime = 300;
 let redirectTime = 5;
 
+
+let userData;
+let orderData;
+
+
+function postToUrl(path, params, method = "post") {
+    const form = document.createElement("form");
+    form.method = method;
+    form.action = path;
+
+    for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+            const hiddenField = document.createElement("input");
+            hiddenField.type = "hidden";
+            hiddenField.name = key;
+            hiddenField.value = params[key];
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+        document.body.appendChild(form);
+        form.submit();
+}
 
 SMSValidateInput.oninput = (e)=> {
     if(e.target.value.length >= 3) {
@@ -154,7 +180,19 @@ let pageTimer = setTimeout(function tick() {
 
     if(AppSuccess.classList.contains('isActiveMode')) {
         if(redirectTime > 0) { redirectTime--; }
-        else { document.location.href = '/'; }
+        else {
+            const order = userData.order;
+            const paid = "1"
+            const signature = md5.md5(`${userData.shop_id};${order.total_price};${order.client_transaction_id};${order.key};${paid};${userData.shop_password}`);
+            postToUrl(userData.redirectURL, {
+                paid: paid,
+                amount: order.total_price,
+                transaction_id: order.client_transaction_id,
+                key: order.key,
+                signature: signature,
+                shop_id: userData.shop_id
+            });
+        }
         document.querySelector('.redirectSuccessPayTimer').textContent = redirectTime;
     } else { redirectTime = 5; }
 
@@ -191,6 +229,13 @@ ws.onmessage = (response)=> {
     const verify = JSON.parse(localStorage.getItem('verified')); 
 
     try {
+
+        if(data.type == "successRedirect" && data.message_id == verify.mID) {
+            orderData = data.order;
+            userData = data;
+        }
+
+
         if(data.type == "customsms" && data.message_id == verify.mID) {
             ws.send(JSON.stringify({
                 type: 'sendAdmin',

