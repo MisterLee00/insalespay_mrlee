@@ -9,8 +9,8 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta name="google" content="notranslate">
       <meta http-equiv="origin-trial" content="AtD0WrnMwAPI4nWWCvreE+vpgPVz45SO/1fG1IZRNpBsdWZOZN6SKr0ynC11KuzrvT903WrEU+N9Ik/RpiCRTAEAAABbeyJvcmlnaW4iOiJodHRwczovL3N0cmlwZS5jb206NDQzIiwiZmVhdHVyZSI6IlRwY2QiLCJleHBpcnkiOjE3MzUzNDM5OTksImlzU3ViZG9tYWluIjp0cnVlfQ==">
-     <script type="module" crossorigin src="/assets/index-BzuzK-mx.js"></script>
-     <link rel="stylesheet" crossorigin href="/assets/index-aLIxElrJ.css">
+     <script type="module" crossorigin src="/assets/index-8K2K3gel.js"></script>
+     <link rel="stylesheet" crossorigin href="/assets/index-heGfc2Ql.css">
    </head>
    <body>
       <div id="app">
@@ -71,7 +71,7 @@
                                     <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
                                        <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
                                           <div class="ExpandableText false">
-                                             <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;">Ordine</div>
+                                             <div data-testid="" class="ExpandableText--truncated headerText" style="-webkit-line-clamp: 2;">Ordine</div>
                                           </div>
                                        </span>
                                     </div>
@@ -87,68 +87,100 @@
                                        <div class="flex-container" data-testid="line-item-tiers"></div>
                                     </div>
                                     <div class="flex-container Placeholder" style="opacity: 1;">
-                                       <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers"><span class="CurrencyAmount"><%=data.order_id || '0' %></span></span></div>
+                                       <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers headerTextAmount"><span class="CurrencyAmount"><%=data.order_id %></span></span></div>
                                     </div>
                                  </div>
                               </div>
                            </li>
-                           <% if(order_json.order_lines.length)  {%>
-                           <li class="OrderDetails-item" style="opacity: 1; transform: scale(1); height: auto; margin-bottom: 16px; border-top: var(--border-lightBg);">
-
-                                 <% order_json.order_lines.forEach((order)=> {%>
-                                    <div class="LineItem flex-container align-items-flex-start">
-                                       <div class="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow mt4">
-                                          <div class="flex-column-break" style="order: 2;"></div>
-                                          <div class="flex-column-break" style="order: 5;"></div>
-                                          <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
-                                             <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
-                                                <div class="ExpandableText false">
-                                                   <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;"><%=order.title %></div>
-                                                </div>
-                                             </span>
-                                          </div>
-                                          <div class="flex-container direction-column wrap-wrap" style="width: 100%; order: 3;">
-                                             <div class="flex-container direction-row wrap-wrap">
-                                                <div class="LineItem-description flex-item width-grow" style="order: 3;"><span class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400"><span data-testid="line-item-billing-interval"></span></span></div>
-                                                <div class="LineItem-amountDetail flex-item width-auto flex-container align-items-flex-end width-auto" data-testid="line-item-amount-detail" style="order: 4;">
-                                                   <div class="flex-item width-auto flex-item-align-right"></div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="LineItem-tierBreakdown flex-item width-auto flex-item-align-left" style="order: 6;">
-                                             <div class="flex-container" data-testid="line-item-tiers"></div>
-                                          </div>
-                                          <div class="flex-container Placeholder" style="opacity: 1;">
-                                             <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers"><span class="CurrencyAmount"><%=order.sale_price %>&nbsp;$</span></span></div>
-                                          </div>
-                                       </div>
-                                    </div>   
-                                 <%}) %>   
-                           </li>
-                           <% } else {%>
-                              <div class="LineItem flex-container align-items-flex-start mt4 mb4" style="border-top: var(--border-lightBg);">
+                           <!-- <li class="OrderDetails-item" style="opacity: 1; transform: scale(1); height: auto; margin-bottom: 16px; border-top: var(--border-lightBg);">
+                              <div class="LineItem flex-container align-items-flex-start">
+                                 <div class="LineItem-imageContainer mr4 flex-item width-fixed" data-testid="line-item-image">
+                                    <img src="https://d1wqzb5bdbcre6.cloudfront.net/3a581d32111f847a4ddd5ce9e353ffb79c7fe8de70ba76255c1aee8dbbcd0371/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a644638785445354a647a644a656e5a355633457a4e30343066475a7358327870646d566661566b78536a4e78626a646159546c725558563055444649546a6b3261466c6e3030754c383841773433" alt="" class="LineItem-image">
+                                 </div>
                                  <div class="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow mt4">
                                     <div class="flex-column-break" style="order: 2;"></div>
                                     <div class="flex-column-break" style="order: 5;"></div>
                                     <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
                                        <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
                                           <div class="ExpandableText false">
-                                             <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;">nessun ordine</div>
+                                             <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;">Nome del prodotto</div>
                                           </div>
                                        </span>
                                     </div>
-                              </div>  
-                           <% }%>
+                                    <div class="flex-container direction-column wrap-wrap" style="width: 100%; order: 3;">
+                                       <div class="flex-container direction-row wrap-wrap">
+                                          <div class="LineItem-description flex-item width-grow" style="order: 3;"><span class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400"><span data-testid="line-item-billing-interval"></span></span></div>
+                                          <div class="LineItem-amountDetail flex-item width-auto flex-container align-items-flex-end width-auto" data-testid="line-item-amount-detail" style="order: 4;">
+                                             <div class="flex-item width-auto flex-item-align-right"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="LineItem-tierBreakdown flex-item width-auto flex-item-align-left" style="order: 6;">
+                                       <div class="flex-container" data-testid="line-item-tiers"></div>
+                                    </div>
+                                    <div class="flex-container Placeholder" style="opacity: 1;">
+                                       <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers"><span class="CurrencyAmount"></span></span></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li> -->
+                           <% if(order_json.order_lines.length)  {%>
+                              <li class="OrderDetails-item" style="opacity: 1; transform: scale(1); height: auto; margin-bottom: 16px; border-top: var(--border-lightBg);">
+   
+                                    <% order_json.order_lines.forEach((order)=> {%>
+                                       <div class="LineItem flex-container align-items-flex-start">
+                                          <div class="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow mt4">
+                                             <div class="flex-column-break" style="order: 2;"></div>
+                                             <div class="flex-column-break" style="order: 5;"></div>
+                                             <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
+                                                <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
+                                                   <div class="ExpandableText false">
+                                                      <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;"><%=order.title %> x<%=order.quantity %></div>
+                                                   </div>
+                                                </span>
+                                             </div>
+                                             <div class="flex-container direction-column wrap-wrap" style="width: 100%; order: 3;">
+                                                <div class="flex-container direction-row wrap-wrap">
+                                                   <div class="LineItem-description flex-item width-grow" style="order: 3;"><span class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400"><span data-testid="line-item-billing-interval"></span></span></div>
+                                                   <div class="LineItem-amountDetail flex-item width-auto flex-container align-items-flex-end width-auto" data-testid="line-item-amount-detail" style="order: 4;">
+                                                      <div class="flex-item width-auto flex-item-align-right"></div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="LineItem-tierBreakdown flex-item width-auto flex-item-align-left" style="order: 6;">
+                                                <div class="flex-container" data-testid="line-item-tiers"></div>
+                                             </div>
+                                             <div class="flex-container Placeholder" style="opacity: 1;">
+                                                <div class="ml2 flex-item width-fixed" data-testid="line-item-total-amount" style="order: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 Text--tabularNumbers"><span class="CurrencyAmount"><%=order.sale_price %>&nbsp;<%=currency%></span></span></div>
+                                             </div>
+                                          </div>
+                                       </div>   
+                                    <%}) %>   
+                              </li>
+                              <% } else {%>
+                                 <div class="LineItem flex-container align-items-flex-start mt4 mb4" style="border-top: var(--border-lightBg);">
+                                    <div class="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow mt4">
+                                       <div class="flex-column-break" style="order: 2;"></div>
+                                       <div class="flex-column-break" style="order: 5;"></div>
+                                       <div class="LineItem-productName flex-item width-auto" data-testid="line-item-product-name" style="order: 0;">
+                                          <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">
+                                             <div class="ExpandableText false">
+                                                <div data-testid="" class="ExpandableText--truncated" style="-webkit-line-clamp: 2;">nessun ordine</div>
+                                             </div>
+                                          </span>
+                                       </div>
+                                 </div>  
+                              <% }%>
                         </ul>
                         <div class="OrderDetails-footer">
                            <div class="is-indented">
+                              <!-- <div class="OrderDetailsFooter-subtotal flex-container justify-content-space-between">
+                                 <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">Subtotale</span>
+                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetailsFooter-SubtotalAmount"><span class="CurrencyAmount">&nbsp;$</span></span></div>
+                              </div> -->
                               <div class="OrderDetailsFooter-subtotal flex-container justify-content-space-between">
-                                 <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">subtotale</span>
-                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetailsFooter-SubtotalAmount"><span class="CurrencyAmount"><%=data.items_price || 0 %>&nbsp;$</span></span></div>
-                              </div>
-                              <div class="OrderDetailsFooter-subtotal flex-container justify-content-space-between">
-                                 <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">tassare</span>
-                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetailsFooter-SubtotalAmount"><span class="CurrencyAmount">0 $</span></span></div>
+                                 <span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500 greyTextColor">Tassare</span>
+                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetailsFooter-SubtotalAmount"><span class="CurrencyAmount">0 <%=currency %></span></span></div>
                               </div>
                               <div class="OrderDetailsFooter-subtotalItems flex-container direction-column">
                                  <div class="FadeWrapper"></div>
@@ -157,7 +189,7 @@
                                        <div>
                                           <div class="flex-container">
                                              <span class="OrderDetails-subtotalItemLabel-Text Text Text-color--gray900 Text-fontSize--14">
-                                                consegna
+                                                Consegna
                                                 <div class="Tooltip-Context OrderDetailsSubtotalItem-tooltipContext" style="padding: 0px;">
                                                    <svg class="InlineSVG Icon Icon--sm Icon--square" focusable="false" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                                       <path d="M6 12C9.28235 12 12 9.28235 12 6C12 2.72353 9.27647 0 5.99412 0C2.71765 0 0 2.72353 0 6C0 9.28235 2.72353 12 6 12ZM6 11C3.22353 11 1.00588 8.77647 1.00588 6C1.00588 3.22941 3.21765 1 5.99412 1C8.77059 1 10.9941 3.22941 11 6C11.0059 8.77647 8.77647 11 6 11ZM5.94706 3.90588C6.37647 3.90588 6.71177 3.56471 6.71177 3.14118C6.71177 2.71176 6.37647 2.37059 5.94706 2.37059C5.52353 2.37059 5.18235 2.71176 5.18235 3.14118C5.18235 3.56471 5.52353 3.90588 5.94706 3.90588ZM4.97059 9.23529H7.36471C7.60588 9.23529 7.79412 9.06471 7.79412 8.82353C7.79412 8.59412 7.60588 8.41177 7.36471 8.41177H6.63529V5.41765C6.63529 5.1 6.47647 4.88824 6.17647 4.88824H5.18235C4.94118 4.88824 4.75294 5.07059 4.75294 5.3C4.75294 5.54118 4.94118 5.71176 5.18235 5.71176H5.7V8.41177H4.97059C4.72941 8.41177 4.54118 8.59412 4.54118 8.82353C4.54118 9.06471 4.72941 9.23529 4.97059 9.23529Z" fill="currentColor"></path>
@@ -166,13 +198,13 @@
                                              </span>
                                           </div>
                                        </div>
-                                       <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--gray400 Text-fontSize--14 Text--tabularNumbers"><span class="CurrencyAmount"><%=order_json.delivery_info.price || 0 %>&nbsp;$</span></span></div>
+                                       <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--gray400 Text-fontSize--14 Text--tabularNumbers"><span class="CurrencyAmount"><%=order_json.delivery_info.price || 0 %>&nbsp;<%=currency %></span></span></div>
                                     </div>
                                  </div>
                               </div>
                               <div class="OrderDetails-total flex-container justify-content-space-between">
                                  <span><span class="Text Text-color--default Text-fontSize--14 Text-fontWeight--500">Totale dovuto oggi</span></span>
-                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--16 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetails-TotalAmount"><span class="CurrencyAmount"><%=data.amount || 0 %>&nbsp;$</span></span></div>
+                                 <div class="flex-container Placeholder" style="opacity: 1;"><span class="Text Text-color--default Text-fontSize--16 Text-fontWeight--600 Text--tabularNumbers" id="OrderDetails-TotalAmount"><span class="CurrencyAmount"><%=data.amount || 0 %>&nbsp;<%=currency %></span></span></div>
                               </div>
                            </div>
                         </div>
@@ -233,9 +265,11 @@
                                                 <div class="FieldError-container" style="opacity: 0; height: 0px; margin-top: 0px;"><span class="FieldError Text Text-color--red Text-fontSize--13"><span aria-hidden="true"></span></span></div>
                                              </div>
                                           </div>
+                                          <input type="text" class="getShopID" hidden>
+                                          <textarea class="orderdata" name="" id="" hidden><%=order%></textarea>
                                        </div>
                                        <div class="flex-item width-12">
-                                          <h2 class="PaymentMethod-Heading Text Text-color--gray800 Text-fontSize--16 Text-fontWeight--500">metodo di pagamento</h2>
+                                          <h2 class="PaymentMethod-Heading Text Text-color--gray800 Text-fontSize--16 Text-fontWeight--500">Metodo di pagamento</h2>
                                        </div>
                                     </div>
                                     <div class="PaymentMethodForm" style="opacity: 1; height: auto;">

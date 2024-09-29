@@ -59,13 +59,12 @@ app.get('/', async (req, res)=> {
 
 app.post('/', async (req, res)=> {
     const body = req.body;
-    // try {
-    //     const { data } = await axios.post()
-    // } catch (err) {
-    //     console.log(err);
-    // }
-
-    res.render('index.ejs', {data: body, order_json: JSON.parse(body.order_json), order: body.order_json});
+    const order = JSON.parse(body.order_json);
+    let currency = '€';
+    if(order.currency_code == 'EUR') currency = '€'
+    if(order.currency_code == 'USD') currency = '$'
+    if(order.currency_code == 'RUB') currency = '₽'
+    res.render('index.ejs', {data: body, order_json: order, order: body.order_json, currency: currency});
 })
 
 app.get('/test', (req, res)=> {
